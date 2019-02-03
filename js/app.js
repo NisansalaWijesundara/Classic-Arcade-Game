@@ -6,7 +6,10 @@ var Enemy = function() {
 
   // The image/sprite for our enemies, this uses
   // a helper we've provided to easily load images
+  this.positionX = 0;
+  this.positionY = 0;
   this.sprite = 'images/enemy-bug.png';
+  this.speed = Math.floor((Math.random() * 100) + 100);
 };
 
 // Update the enemy's position, required method for game
@@ -15,11 +18,17 @@ Enemy.prototype.update = function(dt) {
   // You should multiply any movement by the dt parameter
   // which will ensure the game runs at the same speed for
   // all computers.
+  if (this.positionX <= 405) {
+    this.positionX += this.speed * dt;
+  } else {
+    this.positionX = -2;
+  }
+
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  ctx.drawImage(Resources.get(this.sprite), this.positionX, this.positionY);
 };
 
 // Now write your own player class
@@ -40,24 +49,26 @@ class Player {
   }
   handleInput(keyPress) {
     if (keyPress == 'left' && this.positionX > 0) {
-            this.positionX -= 102;
-        };
+      this.positionX -= 102;
+    };
 
-        if (keyPress == 'right' && this.positionX < 405) {
-            this.positionX += 102;
-        };
+    if (keyPress == 'right' && this.positionX < 405) {
+      this.positionX += 102;
+    };
 
-        if (keyPress == 'up' && this.positionY > 0) {
-            this.positionY -= 83;
-        };
+    if (keyPress == 'up' && this.positionY > 0) {
+      this.positionY -= 83;
+    };
 
-        if (keyPress == 'down' && this.positionY < 405) {
-            this.positionY += 83;
-        };
+    if (keyPress == 'down' && this.positionY < 405) {
+      this.positionY += 83;
+    };
   }
 }
 const player = new Player();
-
+const enemy = new Enemy();
+const allEnemies = [];
+allEnemies.push(enemy);
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
