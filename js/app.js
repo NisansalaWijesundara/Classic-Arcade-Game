@@ -1,4 +1,5 @@
 // Enemies our player must avoid
+
 var Enemy = function() {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
@@ -37,12 +38,33 @@ class Player {
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.positionX, this.positionY);
   }
-  handleInput() {
+  handleInput(keyPress) {
+    if (keyPress == 'left' && this.positionX > 0) {
+            this.positionX -= 102;
+        };
 
+        if (keyPress == 'right' && this.positionX < 405) {
+            this.positionX += 102;
+        };
+
+        if (keyPress == 'up' && this.positionY > 0) {
+            this.positionY -= 83;
+        };
+
+        if (keyPress == 'down' && this.positionY < 405) {
+            this.positionY += 83;
+        };
+
+        if (this.positionY < 0) {
+            setTimeout(function () {
+                this.positionX = 202;
+                this.positionY = 405;
+            }, 600);
+          }
   }
 }
 const player = new Player();
-player.render();
+//player.render();
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
