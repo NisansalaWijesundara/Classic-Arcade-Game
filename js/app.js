@@ -28,8 +28,8 @@ Enemy.prototype.render = function() {
 class Player {
 
   constructor() {
-    this.positionX = 0;
-    this.positionY = 0;
+    this.positionX = 102 * 2;
+    this.positionY = 83 * 5 - 10;
     this.sprite = 'images/char-boy.png';
   }
   update() {
@@ -54,17 +54,10 @@ class Player {
         if (keyPress == 'down' && this.positionY < 405) {
             this.positionY += 83;
         };
-
-        if (this.positionY < 0) {
-            setTimeout(function () {
-                this.positionX = 202;
-                this.positionY = 405;
-            }, 600);
-          }
   }
 }
 const player = new Player();
-//player.render();
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
