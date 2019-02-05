@@ -41,12 +41,23 @@ class Player {
     this.positionY = 83 * 5 - 10;
     this.sprite = 'images/char-boy.png';
   }
+  /*collision*/
   update() {
+    for (let enemy of allEnemies) {
+      if (this.positionX < enemy.positionX + 50 &&
+        this.positionX + 50 > enemy.positionX &&
+        this.positionY < enemy.positionY + 60 &&
+        this.positionY + 60 > enemy.positionY) {
+        this.reset();
+      }
+    }
+}
 
-  }
+/*display the player on the game board*/
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.positionX, this.positionY);
   }
+  /*move the player through the keybard*/
   handleInput(keyPress) {
     if (keyPress == 'left' && this.positionX > 0) {
       this.positionX -= 102;
@@ -64,11 +75,16 @@ class Player {
       this.positionY += 83;
     };
   }
+  /*reset player back to the starting point after the collision*/
+  reset() {
+    this.positionX = 102 * 2;
+    this.positionY = 83 * 5 - 10;
+  }
 }
 const player = new Player();
 const enemy1 = new Enemy(-102, 170, 100);
-const enemy2 = new Enemy((-102 * 3), 83, 150);
-const enemy3 = new Enemy(-102, 83, 150);
+const enemy2 = new Enemy((-102 * 3), 83, 120);
+const enemy3 = new Enemy(-102, 83, 120);
 const enemy4 = new Enemy(-102, 0, 300);
 
 const allEnemies = [];
