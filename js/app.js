@@ -40,6 +40,7 @@ class Player {
     this.positionX = 102 * 2;
     this.positionY = 83 * 5 - 10;
     this.sprite = 'images/char-boy.png';
+    this.complete = false;
   }
   /*collision*/
   update() {
@@ -51,9 +52,11 @@ class Player {
         this.reset();
       }
     }
+    if (this.positionY === -10) {
+    this.complete = true;
+  }
 }
-
-/*display the player on the game board*/
+  /*display the player on the game board*/
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.positionX, this.positionY);
   }
@@ -61,6 +64,7 @@ class Player {
   handleInput(keyPress) {
     if (keyPress == 'left' && this.positionX > 0) {
       this.positionX -= 102;
+
     };
 
     if (keyPress == 'right' && this.positionX < 405) {
@@ -83,8 +87,8 @@ class Player {
 }
 const player = new Player();
 const enemy1 = new Enemy(-102, 170, 100);
-const enemy2 = new Enemy((-102 * 3), 83, 120);
-const enemy3 = new Enemy(-102, 83, 120);
+const enemy2 = new Enemy((-102 * 3), 83, 130);
+const enemy3 = new Enemy(-102, 83, 130);
 const enemy4 = new Enemy(-102, 0, 300);
 
 const allEnemies = [];

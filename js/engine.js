@@ -22,6 +22,7 @@ var Engine = (function(global) {
     win = global.window,
     canvas = doc.createElement('canvas'),
     ctx = canvas.getContext('2d'),
+    id,
     lastTime;
 
   canvas.width = 505;
@@ -55,7 +56,11 @@ var Engine = (function(global) {
     /* Use the browser's requestAnimationFrame function to call this
      * function again as soon as the browser is able to draw another frame.
      */
-    win.requestAnimationFrame(main);
+    if (player.complete === true) {
+      win.cancelAnimationFrame(id);
+    } else {
+      id = win.requestAnimationFrame(main);
+    }
   }
 
   /* This function does some initial setup that should only occur once,
@@ -181,5 +186,5 @@ var Engine = (function(global) {
    * object when run in a browser) so that developers can use it more easily
    * from within their app.js files.
    */
-  global.ctx = ctx;
+  global.ctx = ctx
 })(this);
