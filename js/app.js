@@ -32,6 +32,7 @@ class Player {
 				this.reset();
 			}
 		}
+		//game winning condition
 		if (this.positionY === -10) {
 			const winScreen = document.querySelector('#winScreen');
 			winScreen.classList.add('show');
