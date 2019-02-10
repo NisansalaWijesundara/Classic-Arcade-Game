@@ -1,5 +1,5 @@
 # Classic Arcade Game Clone Project
-
+  ![arcade game](https://github.com/NisansalaWijesundara/Classic-Arcade-Game/blob/master/images/arcade-game.png)
 ## How to run
   - Download or clone the repository on your machine.
   - Extract the .zip file.
